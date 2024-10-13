@@ -1,6 +1,8 @@
 import yadisk
-
-y = yadisk.YaDisk(token="y0_AgAAAABWsXjrAAySrgAAAAETpT3RAAB4d_H72nRPeo_nVzmz1CDWFma67w")
+from aiogram import Bot, Dispatcher, types
+from dotenv import load_dotenv
+from aiogram import types
+"""y = yadisk.YaDisk(token="y0_AgAAAABWsXjrAAySrgAAAAETpT3RAAB4d_H72nRPeo_nVzmz1CDWFma67w")
 # или
 # y = yadisk.YaDisk("<id-приложения>", "<secret-приложения>", "<токен>")
 
@@ -27,4 +29,4 @@ y.download("/some-file-to-download.txt", "downloaded.txt")
 y.remove("/file-to-remove", permanently=True)
 
 # Создаёт новую папку "/test-dir"
-print(y.mkdir("/test-dir"))
+print(y.mkdir("/test-dir"))"""

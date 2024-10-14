@@ -2,6 +2,34 @@ import yadisk
 from aiogram import Bot, Dispatcher, types
 from dotenv import load_dotenv
 from aiogram import types
+from aiogram.filters import Command
+import os
+from aiogram.types import ReplyKeyboardRemove, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
+
+
+from create_report import *
+from download_report import *
+from edit_report import *
+from update_temple import *
+load_dotenv("passwords.env")
+BOT_TOKEN = os.getenv('BOT_TOKEN')
+
+bot = Bot(BOT_TOKEN)
+dp = Dispatcher()
+button_edit_report = KeyboardButton(text="Изменить Отчёт")
+button_download_report = KeyboardButton(text="Выгрузить отчёт")
+button_create_report = KeyboardButton(text="Создать отчёт")
+button_update_temple = KeyboardButton(text="Обновить шаблоны")
+button_registration = KeyboardButton(text="Зарегистрироваться")
+
+greet_kb = ReplyKeyboardMarkup(keyboard=[[button_edit_report], [button_download_report], [button_create_report], [button_update_temple]], resize_keyboard=True)
+
+@dp.message(Command(commands=["start"]))
+async def start_command_handler(message: types.Message):
+    await message.answer("Привет!", reply_markup=greet_kb)
+
+if __name__ == '__main__':
+    dp.run_polling(bot)
 """y = yadisk.YaDisk(token="y0_AgAAAABWsXjrAAySrgAAAAETpT3RAAB4d_H72nRPeo_nVzmz1CDWFma67w")
 # или
 # y = yadisk.YaDisk("<id-приложения>", "<secret-приложения>", "<токен>")

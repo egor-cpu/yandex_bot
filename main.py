@@ -6,16 +6,16 @@ from aiogram.filters import Command
 import os
 from aiogram.types import ReplyKeyboardRemove, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 
-
-from create_report import *
-from download_report import *
-from edit_report import *
-from update_temple import *
 load_dotenv("passwords.env")
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
+from create_report import *
+from download_report import *
+from edit_report import *
+from update_temple import *
+
 button_edit_report = KeyboardButton(text="Изменить Отчёт")
 button_download_report = KeyboardButton(text="Выгрузить отчёт")
 button_create_report = KeyboardButton(text="Создать отчёт")

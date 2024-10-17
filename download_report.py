@@ -30,17 +30,15 @@ async def exit_button_handler(message: types.Message, state: FSMContext):
 async def message_get1(message: types.Message, state: FSMContext):
     folder_path = 'Отчёты'
     files = os.listdir("Отчёты")
+    file_name = message.text
     for i in range(lengh):
         if message.text in files[i]:
             file_name = message.text
-        elif message.text == i+1:
+        elif message.text == str(i+1):
             file_name = files[i]
-    try:
-        for file_name in os.listdir(folder_path):
-            if os.path.isfile(os.path.join(folder_path, file_name)):
-                file = FSInputFile(os.path.join(folder_path, file_name))
-    except FileNotFoundError:
-        await message.answer(f"Ошибка: папка {folder_path} не найдена.")
-        return
-    await message.answer_document(document=file)
+    if os.path.exists(folder_path + "/" + file_name):
+        file = FSInputFile(os.path.join(folder_path, file_name))
+        await message.answer_document(document=file)
+    else:
+        await message.answer("Ошибка файла с " + message.text + " номером/названием не существует, проверьте правильность номера/названия введёного вами")
     await state.clear()
